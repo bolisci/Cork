@@ -22,6 +22,11 @@ jobs:
       - name: Verify Xcode Version
         run: xcodebuild -version
 
+      - name: Install Tuist via Homebrew
+        run: |
+          brew install tuist
+          echo "$HOME/.tuist/bin" >> $GITHUB_PATH
+
       - name: Cache Tuist
         uses: actions/cache@v4
         with:
@@ -29,11 +34,6 @@ jobs:
           key: ${{ runner.os }}-tuist-${{ hashFiles('**/Tuist/Project.swift') }}
           restore-keys: |
             ${{ runner.os }}-tuist-
-
-      - name: Install Tuist
-        run: |
-          curl -Ls https://install.tuist.io | bash
-          echo "$HOME/.tuist/bin" >> $GITHUB_PATH
 
       - name: Fetch Tuist Dependencies
         run: tuist fetch
