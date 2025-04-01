@@ -10,14 +10,20 @@ on:
 
 jobs:
   build:
-    runs-on: macos-14  # macOS with Xcode 17 support
+    runs-on: macos-14  # macOS runner with the latest available Xcode
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Select Xcode 17.0
-        run: sudo xcode-select -switch /Applications/Xcode_17.0.app/Contents/Developer
+      - name: List Available Xcode Versions
+        run: xcversion list
+
+      - name: Select Xcode 16.2
+        run: sudo xcode-select -switch /Applications/Xcode_16.2.app/Contents/Developer
+
+      - name: Verify Xcode Version
+        run: xcodebuild -version
 
       - name: Cache Tuist
         uses: actions/cache@v4
