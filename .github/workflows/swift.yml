@@ -19,5 +19,7 @@ jobs:
               errors = set(line.rsplit("(")[-1][:-2] for line in in_file if line.strip().endswith(")"))
           print(f"{len(errors) = }\ndisabled_rules:")
           print("  - " + "\n  - ".join(sorted(errors)))
+      - name: Select Xcode
+      - run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
       - run: swift build || true
       - run: swift test  || true
