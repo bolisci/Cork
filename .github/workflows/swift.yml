@@ -29,6 +29,9 @@ jobs:
           print(f"{len(errors) = }\ndisabled_rules:")
           print("  - " + "\n  - ".join(sorted(errors)))
 
+      - name: Tuist Install
+        run: tuist install
+
       - name: Generate Xcode Project (Tuist)
         run: tuist generate
 
