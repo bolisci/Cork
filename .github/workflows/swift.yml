@@ -20,6 +20,6 @@ jobs:
           print(f"{len(errors) = }\ndisabled_rules:")
           print("  - " + "\n  - ".join(sorted(errors)))
       - name: Select Xcode
-      - run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
       - run: swift build || true
       - run: swift test  || true
