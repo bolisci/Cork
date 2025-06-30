@@ -2,17 +2,13 @@
 
 A fast GUI for Homebrew written in SwiftUI
 
-[![Mastodon Link](https://img.shields.io/mastodon/follow/108939255808776594?domain=https%3A%2F%2Fmstdn.social&label=Follow%20me%20for%20updates&style=flat)](https://mstdn.social/@davidbures)
+[![Follow me on Bluesky](https://img.shields.io/badge/Bluesky-0285FF?logo=bluesky&logoColor=fff&label=Follow%20me%20on&color=0285FF)](https://bsky.app/profile/buresdv.eu)
 [![Discord Link](https://img.shields.io/discord/1083475351260377119?label=Talk%20to%20me%20on%20Discord&style=flat)](https://discord.gg/kUHg8uGHpG)
-[![Join the Forums](https://img.shields.io/badge/Join%20the%20Forums-orange?style=flat&link=https://forum.corkmac.app/t/cork)](https://forum.corkmac.app/t/cork)
+[![Mastodon Link](https://img.shields.io/mastodon/follow/108939255808776594?domain=https%3A%2F%2Fmstdn.social&label=Follow%20me%20for%20updates&style=flat)](https://mstdn.social/@davidbures)
 
 # My whole life is falling apart right now, so the development of Cork will be impacted
 
 ## Special Thanks
-
-I'd like to personally thank [Seb Jachec](https://github.com/sebj) for implementing a system for getting real-time outputs of Brew commands.
-
-Without his contribution, many of the processes that depend on real-time outputs, such as installation, uninstallation and updating of packages, would be impossible.
 
 I'd like to personally thank [Dmitri Bouniol](https://github.com/dimitribouniol) and [Ben Carlsson](https://twos.dev) for coming up with a way for self-compiled builds to bypass the license check.
 
@@ -154,7 +150,12 @@ In my case, it was `echo "eval \"\$(/Users/david/.local/bin/mise activate zsh)\"
 #### Compiling Cork
 
 0. I recommend you pick a version marked by one of the version tags. Those are released versions. If you decide to compile the current state of any of the branches, you might encounter experience-breaking bugs and unfinished features
-1. Use the command `git clone https://github.com/buresdv/Cork.git && cd Cork && mise use tuist@4.25.0 && tuist install && tuist generate --no-binary-cache`. Xcode will open the project.
+1. Use the command `git clone https://github.com/buresdv/Cork.git && cd Cork && mise exec tuist@4.25.0 -- tuist install && mise exec tuist@4.25.0 -- tuist generate --no-binary-cache`.
+  - Mise will ask you to trust the local [`.mise.toml`](.mise.toml).
+  - You can either:
+    - Say yes, to always use `tuist` version 4.25.0 in this directory.
+    - Say no, and the command will use `tuist` 4.25.0 anyway, but future invocations of `tuist` will not be version controlled.
+  - Xcode will open the project.
 
 <div style= "margin-left: 1rem">
   <details>
@@ -163,7 +164,7 @@ In my case, it was `echo "eval \"\$(/Users/david/.local/bin/mise activate zsh)\"
     <ol>
       <li><code>git clone https://github.com/buresdv/Cork.git</code> downloads the source code</li>
       <li><code>cd Cork</code> opens the folder you downloaded Cork into</li>
-      <li><code>mise use</code> tells your system to use version <i>4.25.0</i> of Tuist to build Cork</li>
+      <li><code>mise exec [...]</code> runs a command using version <i>4.25.0</i> of Tuist, without polluting your local `mise.toml`, to build Cork</li>
       <li><code>tuist install</code> downloads all Cork pre-requisites</li>
       <li><code>tuist generate</code> creates the Xcode project and opens it</li>
     </ol>
@@ -192,5 +193,3 @@ Cork is licensed under [Commons Clause](https://commonsclause.com).
 This means that Cork's source source is available and you can modify it, contribute to it etc., but you can't sell or distribute Cork or modified versions of it.
 
 Moreover, you can’t distribute compiled versions of Cork without consulting me first. Compiling versions for your personal use is fine.
-
-[![Mutable.ai Auto Wiki](https://img.shields.io/badge/Auto_Wiki-Mutable.ai-blue)](https://wiki.mutable.ai/buresdv/Cork)
