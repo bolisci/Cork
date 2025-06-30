@@ -43,8 +43,8 @@ jobs:
 
       # Step 3: Run the build command.
       # This uses the standard 'xcodebuild' command-line tool.
-      # -project: Specifies the Xcode project to build.
+      # -project: Specifies the Xcode project to build. The path is now corrected to 'Cork/Cork.xcodeproj'.
       # -scheme: Specifies the build scheme. 'Cork' is the main application target.
       # clean build: 'clean' removes old build files, and 'build' compiles the project.
       - name: Build with xcodebuild
-        run: xcodebuild clean build -scheme Cork -project Cork.xcodeproj
+        run: xcodebuild clean build -scheme Cork -project Cork/Cork.xcodeproj
